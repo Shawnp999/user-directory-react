@@ -25,3 +25,19 @@
     font-family: 'bold';
   }
 
+
+.userCardList {
+    display: flex;
+    flex-direction: column;
+}
+
+.userCardListMobile {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.userCardMobile {
+    margin-bottom: 20px;
+}
+

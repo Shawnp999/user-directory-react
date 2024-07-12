@@ -20,7 +20,9 @@ define([], function() {
 
       "UserInfo_InnerPhone" : "Внутренний телефон",
 
-      "NoUsersFound" : "Пользователи не найдены"
+      "NoUsersFound" : "Пользователи не найдены",
+
+      "noDepFound" : "Отдел не выбран"
         
 
   

@@ -20,7 +20,8 @@ define([], function() {
 
     "UserInfo_InnerPhone" : "Internal phone",
 
-    "NoUsersFound" : "No Users Found"
+    "NoUsersFound" : "No Users Found",
+    "noDepFound" : "No department selected"
 
   }
 });

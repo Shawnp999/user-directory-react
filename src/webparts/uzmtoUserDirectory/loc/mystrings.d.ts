@@ -19,6 +19,7 @@ declare interface IUzmtoUserDirectoryWebPartStrings {
   UserInfo_InnerPhone : string,
 
   NoUsersFound : string;
+  noDepFound : string;
 
 
 }

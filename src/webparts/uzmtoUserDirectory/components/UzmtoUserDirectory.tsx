@@ -352,41 +352,32 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
   
   return (
 
-    <section>
-    <SearchBar searchText={searchText != null ? searchText : ''} onSearch={searchUsersByName} handleSearchInputChange={handleSearchInputChange} />
-  
-    {isLoading && (
-      <div className={styles.loadingContainer}>
-        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..." />
-      </div>
-    )}
-  
-    {!isLoading && (
-      <>
-        <DepartmentFilter
-          orgStructure={orgStructure}
-          selectedDepartment={selectedDepartment}
-          changeDepartmentMethod={setSelectedDepartment}
-        />
-  
-        {users.length === 0 ? (
-          <div className={styles.NoUsersFound}>{strings.NoUsersFound}</div>
-        ) : (
-          <>
-            {users.length > 0 && (
-              <div className={styles.loadingContainer}>
-                <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..." />
-              </div>
-            )}
-            <UserCardList users={users} highlightEmail={HighlightUZMTOEmail} myDepartment={myDepartment} />
-          </>
-        )}
-      </>
-    )}
-  </section>
-  
-  
+      <section>
+        <SearchBar searchText={searchText != null ? searchText : ''} onSearch={searchUsersByName}
+                   handleSearchInputChange={handleSearchInputChange}/>
 
+        {isLoading && (
+            <div className={styles.loadingContainer}>
+              <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..."/>
+            </div>
+        )}
+
+        {!isLoading && (
+            <>
+              <DepartmentFilter
+                  orgStructure={orgStructure}
+                  selectedDepartment={selectedDepartment}
+                  changeDepartmentMethod={setSelectedDepartment}
+              />
+
+              {users.length === 0 ? (
+                  <div className={styles.NoUsersFound}>{strings.NoUsersFound}</div>
+              ) : (
+                  <UserCardList users={users} highlightEmail={HighlightUZMTOEmail} myDepartment={myDepartment}/>
+              )}
+            </>
+        )}
+      </section>
 
 
   );
