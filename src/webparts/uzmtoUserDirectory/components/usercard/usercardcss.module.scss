@@ -1,0 +1,255 @@
+.imgphoto {
+  height: 260px;
+  border-radius: 15px;
+  overflow: hidden;
+  object-Fit: cover;
+  object-Position: 40%
+}
+
+.cell {
+  box-sizing: border-box;    
+  padding: 10px; 
+}
+
+.userContainer {
+  display: flex;
+  border: 2px solid #e0e0e0;
+  border-radius: 13px;
+  box-shadow: 0 0 5px rgba(169, 169, 169, 0.5);
+  padding-left: 10px;
+}
+
+.socialIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.photoContainer {
+  width: 40%;
+  padding: 10px;
+  // justify-content: center;
+  // align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  // max-width: 200px;
+  max-height: 310px;
+  aspect-ratio: 3/5;
+}
+
+.userInfoContainer {
+  width: 60%;
+  padding: 10px;
+ //box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+}
+
+.displayName {
+  color: #093a69;
+  font-size: 16px;
+  justify-content:flex-start;
+  font-family: 'bold';
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.userInfoCnt {
+  width: 90%;
+  border: 2px #e0e0e0 solid;
+  border-radius: 13px;
+  color: #093a69;
+  padding: 10px 10px 10px 15px;
+  margin-bottom: 10px;
+  font-family: 'medium';
+  font-size: 12px;
+}
+
+.department {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.managerLetters {
+  min-width: 25px ;           
+  min-height: 25px; 
+  border-radius: 50%; 
+  background-color: #acbdce;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.socialIconContainer {
+  display: flex;
+  justify-content: flex-end;
+  // margin-top: 10px ;
+}
+
+.photocss {
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  object-fit: cover ;
+  border-radius: 10px;
+
+}
+
+
+
+.socialIconsLeft {
+  justify-content: flex-start;
+}
+
+.socialIconsRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.meta {
+  background-image: url(../Icons/icons-meta.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 27px; 
+  height: 27px;
+  display: inline-block;
+}
+
+.telegram {
+  background-image: url(../Icons/icons-telegram.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 27px; 
+  height: 27px;
+  display: inline-block;
+}
+  
+.insta {
+  background-image: url(../Icons/icons-insta.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 27px; 
+  height: 27px;
+  display: inline-block;
+  // background-color: linear-gradient(217deg, #feb000 , #c105e2 , #fc07ca , #fe0a1e ) !important;
+  border-radius: 50%;
+} 
+
+.instasocials {
+  background: linear-gradient(217deg,#7d15ff,#f400c9,#f7b800,#f2000d),linear-gradient(#f400c9,#7d15ff,#f2000d,#f7b800)!important; 
+  width: 27px; 
+  height: 27px;
+  border-radius: 50%;
+  margin: 4px;
+  cursor: pointer;
+}
+
+
+  
+.LinkedIn {
+  background-image: url(../Icons/icons-linkedin.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 27px; 
+  height: 27px;
+  display: inline-block;
+}
+  
+.twitter {
+  background-image: url(../Icons/icons-twitter.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 27px; 
+  height: 27px;
+  display: inline-block;
+}
+
+.spanclass {
+  color: #b1b2c4; 
+  font-family: 'medium'
+}
+
+.jobTitle {
+  color: #b1b1b1;
+  font-size: 13px;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip::before {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px 1px #b2b4b3;
+  color: #b2b4b3;
+  content: attr(data-tooltip);
+  font-family: medium;
+  font-size: 13px;
+  left: -100px;
+  min-width: 200px;
+  padding: 12px;
+  position: absolute;
+  text-align: center;
+  top: -20px;
+  transform: translateY(-100%);
+  visibility: hidden;
+  z-index: 1;
+}
+
+.tooltipVisible::before {
+  visibility: visible;
+}
+
+.tooltip:hover::before {
+  visibility: visible;
+}
+
+
+@font-face {
+  font-family: 'black';
+  src: url(../fonts/Onest-Black.ttf);
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url(../fonts/Onest-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'extrabold';
+  src: url(../fonts/Onest-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: 'light';
+  src: url(../fonts/Onest-Light.ttf);
+}
+
+@font-face {
+  font-family: 'medium';
+  src: url(../fonts/Onest-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'regular';
+  src: url(../fonts/Onest-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'thin';
+  src: url(../fonts/Onest-Thin.ttf);
+}

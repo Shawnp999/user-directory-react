@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "user-directory-react-client-side-solution",
+    "id": "8bcdaac3-740d-4584-b73a-f90b0d3b8b58",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.18.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "user-directory-react description"
+      },
+      "longDescription": {
+        "default": "user-directory-react description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "user-directory-react Feature",
+        "description": "The feature that activates elements of the user-directory-react solution.",
+        "id": "3071d3c0-b704-4c16-82c3-b7bb625c04f0",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/user-directory-react.sppkg"
+  }
+}

@@ -1,0 +1,27 @@
+.userCardList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: 50%; 
+    box-sizing: border-box;
+}
+
+
+.userPair {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; 
+    width: 100%;
+}
+
+.NoUsersFound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    font-size: 16px;
+    font-family: 'bold';
+  }
+

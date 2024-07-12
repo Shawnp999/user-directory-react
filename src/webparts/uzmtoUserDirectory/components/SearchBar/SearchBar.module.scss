@@ -1,0 +1,108 @@
+// .searchBar {
+//     border: black 2px solid;
+//     display: fle;
+// }
+
+
+.searchcont {
+    display: flex;
+    font-family: 'bold';
+    // justify-content: space-around;
+}
+
+// .searchbutton {
+//     display:  flex;
+//     margin-left: 10px;
+//     padding: 5px;
+//     justify-content: center;
+//     align-items: center;
+//     width: 70px;
+//     border-radius: 10px;
+//     cursor: pointer;
+//     // font-family: 'bold';
+// }
+
+
+font-face {
+    font-family: 'black';
+    src: url(../fonts/Onest-Black.ttf);
+  }
+  
+  @font-face {
+    font-family: 'bold';
+    src: url(../fonts/Onest-Bold.ttf);
+  }
+  
+  @font-face {
+    font-family: 'extrabold';
+    src: url(../fonts/Onest-ExtraBold.ttf);
+  }
+  
+  @font-face {
+    font-family: 'light';
+    src: url(../fonts/Onest-Light.ttf);
+  }
+  
+  @font-face {
+    font-family: 'medium';
+    src: url(../fonts/Onest-Medium.ttf);
+  }
+  
+  @font-face {
+    font-family: 'regular';
+    src: url(../fonts/Onest-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: 'thin';
+    src: url(../fonts/Onest-Thin.ttf);
+  }
+
+  .searchbutton {
+    background-image: url(../Icons/icons-search.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 21px; 
+    height: 21px;
+    display: inline-block;
+    //margin-left: 3px;
+    border: none;
+    background-color: #eee;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .searchInput input {
+    border: none; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    outline: none;
+    background-color: #eee;
+    padding-left: 10px;
+    color: #424242;
+    size: 15px;
+  }
+
+  .searchInput input::placeholder {
+    color: #424242; 
+    size: 15px;
+  }
+
+  
+.searchInput {
+  border-radius: 15px;
+  display: flex;
+  padding: 10px;
+  font-family: 'medium';
+  // width: 100%;
+  justify-content: space-between;
+  background-color: #eee;
+  margin-bottom: 25px;
+  align-items: center;
+}
+
+@font-face {
+  font-family: 'medium';
+  src: url(../fonts/Onest-Medium.ttf);
+}

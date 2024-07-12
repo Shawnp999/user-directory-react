@@ -1,0 +1,124 @@
+.departmentButton {
+  display: flex;
+  border: #6386a1 2px solid;
+  justify-content: center;
+  align-items: center;
+  min-height: 25px;
+  // min-width: 60px;
+  font-size: 14px;
+  font-family: 'bold';
+  color: #6386a1;
+  // margin: 3px;
+  border-radius: 25px;
+  cursor: pointer;
+  position: relative;
+  padding: 7px 14px 7px 14px;
+
+}
+// .departmentButton:hover {
+//   background-color: #6386a1;
+//   color: white; 
+// }
+
+// .departmentButton:active {
+//   background-color: #6386a1;
+//   color: white;
+// }
+
+.departmentrow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subdepbtns  {
+  display: flex;
+  border: #b1b1b1 2px solid;
+  justify-content: center;
+  align-items: center;
+  min-height: 35px;
+  min-width: 95px;
+  font-size: 14px;
+  font-family: 'medium';
+  color: #b1b1b1;
+  margin: 4px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+
+.tooltip::before {
+  background-color: #ffffff;
+  border-radius: 15px;
+  color: #b2b4b3;
+  box-shadow: 1px 1px 10px 1px #b2b4b3;
+  content: attr(data-tooltip);
+  padding: 10px 15px;
+  position: absolute;
+  text-align: center;
+  visibility: hidden;
+  z-index: 1;
+  font-size: 13px;
+  font-family: 'medium';
+  white-space: nowrap;
+  transform: translateY(-100%);
+}
+
+.tooltip:hover::before {
+  visibility: visible;
+  transform: translateY(-100%) translateX(-50%); /* Adjust the translation as needed */
+  top: -30px;
+  left: 50%;
+}
+
+
+.tooltipVisible::before {
+  visibility: visible;
+}
+
+
+
+.selectedDep {
+  background-color: #6386a1 ;//!important
+  color: white;
+}
+ 
+
+@font-face {
+  font-family: 'black';
+  src: url(../fonts/Onest-Black.ttf);
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url(../fonts/Onest-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'extrabold';
+  src: url(../fonts/Onest-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: 'light';
+  src: url(../fonts/Onest-Light.ttf);
+}
+
+@font-face {
+  font-family: 'medium';
+  src: url(../fonts/Onest-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'regular';
+  src: url(../fonts/Onest-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'thin';
+  src: url(../fonts/Onest-Thin.ttf);
+}

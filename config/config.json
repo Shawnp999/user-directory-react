@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "uzmto-user-directory-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/uzmtoUserDirectory/UzmtoUserDirectoryWebPart.js",
+          "manifest": "./src/webparts/uzmtoUserDirectory/UzmtoUserDirectoryWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "UzmtoUserDirectoryWebPartStrings": "lib/webparts/uzmtoUserDirectory/loc/{locale}.js"
+  }
+}
