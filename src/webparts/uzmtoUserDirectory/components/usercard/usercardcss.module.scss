@@ -255,3 +255,105 @@
   font-family: 'thin';
   src: url(../fonts/Onest-Thin.ttf);
 }
+
+
+/* Add these styles to support mobile view */
+.cellMobile {
+  box-sizing: border-box;    
+}
+
+.userContainerMobile {
+    display: flex;
+    border: 2px solid #e0e0e0;
+    border-radius: 13px;
+    box-shadow: 0 0 5px rgba(169, 169, 169, 0.5);
+}
+
+.photoContainerMobile {
+  width: 40%;
+  padding: 10px;
+  // justify-content: center;
+  // align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  // max-width: 200px;
+  max-height: 310px;
+  aspect-ratio: 3/5;
+}
+
+.userInfoContainerMobile {
+  width: 60%;
+  padding: 10px 15px 10px 0px;
+ //box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+}
+
+.displayNameMobile {
+  color: #093a69;
+  font-size: 16px;
+  justify-content:flex-start;
+  font-family: 'bold';
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.displayNameLargeMobile {
+  font-size: 16px;
+  color: #093a69;
+  font-family: 'bold';
+}
+
+.jobTitleMobile {
+  color: #b1b1b1;
+  font-size: 13px;
+}
+
+.departmentMobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.managerLettersMobile {
+  min-width: 25px ;           
+  min-height: 25px; 
+  border-radius: 50%; 
+  background-color: #acbdce;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.socialIconContainerMobile {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.socialIconsLeftMobile {
+  justify-content: flex-start;
+}
+
+.socialIconsRightMobile {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.userInfoCntMobile {
+  width: 90%;
+  border: 2px #e0e0e0 solid;
+  border-radius: 13px;
+  color: #093a69;
+  padding: 10px 10px 10px 15px;
+  margin-bottom: 10px;
+  font-family: 'medium';
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
