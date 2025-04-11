@@ -143,7 +143,7 @@ const UserCard: React.FC<IUserCardProps> = ({ user, manager, additionalUserSetti
           <div
             className={isMobileView ? styles.displayNameMobile + ' ' + styles.userInfoCntMobile  : styles.displayName + ' ' + styles.userInfoCnt}
           >
-            <div className={styles.displayNameLargeMobile} >
+            <div className={isMobileView ? styles.displayNameLargeMobile : styles.displayName} >
             {transformedDisplayName}
             </div>
             
@@ -178,20 +178,18 @@ const UserCard: React.FC<IUserCardProps> = ({ user, manager, additionalUserSetti
           <div className={isMobileView ? styles.socialIconContainerMobile : styles.socialIconContainer}>
             <div className={isMobileView ? styles.socialIconsLeftMobile : styles.socialIconsLeft}></div>
             <div className={isMobileView ? styles.socialIconsRightMobile : styles.socialIconsRight}>
-              {additionalUserSettings && additionalUserSettings.media.meta && <a href={MetaURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.meta}`} />}
+              {additionalUserSettings && additionalUserSettings.media.meta && <a href={MetaURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.metaGrey}`} />}
               {additionalUserSettings && additionalUserSettings.media.instagram && (
-                <div className={styles.instasocials}>
-                  <a href={instaURL} target="_blank" rel="noopener noreferrer" className={styles.insta} />
-                </div>
+                  <a href={instaURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.instaGrey}`} />
               )}
               {additionalUserSettings && additionalUserSettings.media.linkedin && (
-                <a href={LinkedInURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.LinkedIn}`} />
+                <a href={LinkedInURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.LinkedInGrey}`} />
               )}
               {additionalUserSettings && additionalUserSettings.media.telegram && (
-                <a href={teleUrl} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.telegram}`} />
+                <a href={teleUrl} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.telegramGrey}`} />
               )}
               {additionalUserSettings && additionalUserSettings.media.twitter && (
-                <a href={TwitterURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.twitter}`} />
+                <a href={TwitterURL} target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.twitterGrey}`} />
               )}
             </div>
           </div>

@@ -12,6 +12,8 @@ import SearchBar from './SearchBar/SearchBar';
 import styles from './UzmtoUserDirectory.module.scss';
 //import { UzmtoUser } from './entities/UzmtoUser';
 import * as strings from 'UzmtoUserDirectoryWebPartStrings';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 interface IUzmtoUserDirectoryProps {
@@ -55,6 +57,7 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
   const [myDepartment, setMyDepartment] = useState<Department | null>(null);
   const [searchText, setSearchText] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false); 
+  const [showNoUsers , setShowNoUsers] = useState <boolean> (false)
   
   
 
@@ -193,102 +196,109 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
   
  
   const fetchUsers = (filterString: string | null, searchString: string | null) => {
+    setIsLoading(true);
+    setShowNoUsers(false);  // Reset this at the start of each fetch
+  
     props.context.msGraphClientFactory.getClient('3').then((client: MSGraphClientV3): void => {
-      setIsLoading(true);
-
       if (!filterString && !searchString) {
-          setIsLoading(false);
-          return;
+        setIsLoading(false);
+        return;
       }
-
-
+  
       let modifiedFilterString: string | null = filterString;
 
-      // by department
+      // Add accountEnabled filter to existing filter
+      const activeFilter = 'accountEnabled eq true';
+      const combinedFilter = filterString 
+        ? `${activeFilter} and (${filterString})`
+        : activeFilter;
+  
+      // By department
       if (filterString) {
-          client.api(`/users`)
+        client.api(`/users`)
           .header('ConsistencyLevel', 'eventual')
           .expand('manager($select=id,displayName,department),extensions')
           .count(true)
           .select('id,displayName,department,mail,businessPhones,mobilePhone,jobTitle,extensions')
-          .filter(filterString)
+          .filter(combinedFilter)  
           .get((error, result: any) => {
-              if (error) {
-                  console.log("Error fetching users:", error);
-                  setIsLoading(false);
-                  return;
-              }
-
-              const processedUsers = postProcessUsers(result.value);
-              const sortedUsers = sortUsers(processedUsers, selectedDepartment?.departmentAAD || '');
-
-              //Test, set ent-en.com email for user Pantzlaff Shawn
-
-              const sortedUsersWithHighlightedEmail = sortedUsers.map((user) => {
-                return {
-                  ...user,
-                  mail: HighlightUZMTOEmail(user.mail ?? ""),
-                };
-              });
-              
-              setUsers(sortedUsersWithHighlightedEmail);
-              
-
-
-
-              setUsers(sortedUsers);
+            if (error) {
+              console.log("Error fetching users:", error);
               setIsLoading(false);
+              return;
+            }
+  
+            const processedUsers = postProcessUsers(result.value);
+            const sortedUsers = sortUsers(processedUsers, selectedDepartment?.departmentAAD || '');
+  
+            const sortedUsersWithHighlightedEmail = sortedUsers.map((user) => {
+              return {
+                ...user,
+                mail: HighlightUZMTOEmail(user.mail ?? ""),
+              };
+            });
+  
+            setUsers(sortedUsersWithHighlightedEmail);
+            setIsLoading(false);
+            if (sortedUsersWithHighlightedEmail.length === 0) {
+              setTimeout(() => setShowNoUsers(true), 1000);
+            }
           });
       }
-
-      // by name
+  
+      // By name
       if (searchString) {
-          client.api(`/users`)
+        client.api(`/users`)
           .header('ConsistencyLevel', 'eventual')
           .search(`"displayName:${searchString}" OR "mail:${searchString}" OR "businessPhones:${searchString}"`)
           .select('id')
           .get((error, result: any) => {
             if (error) {
-                console.log("Error fetching users:", error);
-                setIsLoading(false);
-                return;
+              console.log("Error fetching users:", error);
+              setIsLoading(false);
+              return;
             }
-
+  
             const searchUserObj: ISearchUserObj[] = result.value;
-
+  
             if (searchUserObj.length === 0) {
-                setUsers([]);
-                alert("No users found");
-                setIsLoading(false);
-                return;
+              setUsers([]);
+              setIsLoading(false);
+              setTimeout(() => setShowNoUsers(true), 1000);
+              return;
             }
-
+  
             const searchUserIds = searchUserObj.map(searchObj => `'${searchObj.id}'`).join(', ');
-            modifiedFilterString = `id in (${searchUserIds})`;
-            
 
-            // by search string
+            // combine ID and account filter
+            modifiedFilterString = `accountEnabled eq true and id in (${searchUserIds})`;
+  
             client.api(`/users`)
-                .header('ConsistencyLevel', 'eventual')
-                .expand('manager($select=id,displayName,department),extensions')
-                .count(true)
-                .select('id,displayName,department,mail,businessPhones,mobilePhone,jobTitle,extensions')
-                .filter(modifiedFilterString)
-                .get((error, result: any) => {
-                  if (error) {
-                      console.log("Error fetching users:", error);
-                      setIsLoading(false);
-                      return;
-                  }
-
-                  const processedUsers = postProcessUsers(result.value);
-                  setUsers(processedUsers);
+              .header('ConsistencyLevel', 'eventual')
+              .expand('manager($select=id,displayName,department),extensions')
+              .count(true)
+              .select('id,displayName,department,mail,businessPhones,mobilePhone,jobTitle,extensions')
+              .filter(modifiedFilterString)  //filter enabled account
+              .get((error, result: any) => {
+                if (error) {
+                  console.log("Error fetching users:", error);
                   setIsLoading(false);
-                });
-      });
+                  setTimeout(() => setShowNoUsers(true), 1000);
+                  return;
+                }
+  
+                const processedUsers = postProcessUsers(result.value);
+                setUsers(processedUsers);
+                setIsLoading(false);
+                if (processedUsers.length === 0) {
+                  setTimeout(() => setShowNoUsers(true), 1000);
+                }
+              });
+          });
       }
-  });
-};
+    });
+  };
+  
 
   const HighlightUZMTOEmail = (emailFromAD: string | undefined | null, userId: string = ''): string => {
     if (!emailFromAD) {
@@ -351,35 +361,33 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
 
   
   return (
-
-      <section>
-        <SearchBar searchText={searchText != null ? searchText : ''} onSearch={searchUsersByName}
-                   handleSearchInputChange={handleSearchInputChange}/>
-
-        {isLoading && (
-            <div className={styles.loadingContainer}>
-              <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..."/>
-            </div>
-        )}
-
-        {!isLoading && (
-            <>
-              <DepartmentFilter
-                  orgStructure={orgStructure}
-                  selectedDepartment={selectedDepartment}
-                  changeDepartmentMethod={setSelectedDepartment}
-              />
-
-              {users.length === 0 ? (
-                  <div className={styles.NoUsersFound}>{strings.NoUsersFound}</div>
-              ) : (
-                  <UserCardList users={users} highlightEmail={HighlightUZMTOEmail} myDepartment={myDepartment}/>
-              )}
-            </>
-        )}
-      </section>
-
-
+    <section>
+      <SearchBar 
+        searchText={searchText != null ? searchText : ''} 
+        onSearch={searchUsersByName}
+        handleSearchInputChange={handleSearchInputChange}
+      />
+  
+      <DepartmentFilter
+        orgStructure={orgStructure}
+        selectedDepartment={selectedDepartment}
+        changeDepartmentMethod={setSelectedDepartment}
+      />
+  
+      {isLoading && (
+        <div className={styles.loadingContainer}>
+          <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..."/>
+        </div>
+      )}
+  
+      {!isLoading && showNoUsers && (
+        <div className={styles.NoUsersFound}>{strings.NoUsersFound}</div>
+      )}
+  
+      {!isLoading && users.length > 0 && (
+        <UserCardList users={users} highlightEmail={HighlightUZMTOEmail} myDepartment={myDepartment}/>
+      )}
+    </section>
   );
 };
 
