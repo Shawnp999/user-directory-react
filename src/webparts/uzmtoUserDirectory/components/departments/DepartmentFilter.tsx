@@ -101,19 +101,17 @@ const DepartmentFilter: React.FunctionComponent<IDepartmentFilterProps> = (props
     };
 
     const renderTooltip = (departmentName: string) => (
-        <Tooltip id="tooltip-department" className="tooltipCustom">
+        <Tooltip id="tooltip-department" className="tooltipCustom" style={{ maxWidth: 'none' }}>
             {departmentName}
         </Tooltip>
     );
 
     const departmentItems = props.orgStructure.departments
-    .filter((department, index) => index === 0) 
     .map((department, index) => (
         <OverlayTrigger
             key={index}
-            placement="top"
-            overlay={renderTooltip(department.departmentName)} 
-            show
+            placement="top" 
+            overlay={renderTooltip(department.departmentName)}
         >
             <div
                 ref={el => departmentRefs.current[index] = el}
