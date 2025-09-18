@@ -213,7 +213,7 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
 
   const postProcessUsers = (users: MicrosoftGraph.User[]): MicrosoftGraph.User[] => {
     const filteredUsers = users.filter(user => {
-      return user.mail!.endsWith('@uzmto.com') || user.mail == 'aleksey.semenov@ent-en.com';
+      return user.mail?.endsWith('@uzmto.com');
     });
 
     filteredUsers.forEach((user) => {
@@ -222,7 +222,7 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
       //     // testing
       //     if (user.id === '1072f80e-0652-4f1e-809e-dbb860af0880') {
       //       user.mail = HighlightUZMTOEmail('diana.khalikova@ent-en.com');
-      //     } else {
+      //     } else { 
 
       //check if null
       user.mail = user.mail ? HighlightUZMTOEmail(user.mail) : undefined;
