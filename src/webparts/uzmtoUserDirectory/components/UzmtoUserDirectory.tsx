@@ -213,7 +213,7 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
 
   const postProcessUsers = (users: MicrosoftGraph.User[]): MicrosoftGraph.User[] => {
     const filteredUsers = users.filter(user => {
-      return user.mail?.endsWith('@uzmto.com');
+      return (user.mail?.endsWith('@uzmto.com') || user.mail === 'aleksey.semenov@ent-en.com');
     });
 
     filteredUsers.forEach((user) => {
@@ -223,9 +223,13 @@ const UzmtoUserDirectory: React.FunctionComponent<IUzmtoUserDirectoryProps> = (p
       //     if (user.id === '1072f80e-0652-4f1e-809e-dbb860af0880') {
       //       user.mail = HighlightUZMTOEmail('diana.khalikova@ent-en.com');
       //     } else { 
-
-      //check if null
-      user.mail = user.mail ? HighlightUZMTOEmail(user.mail) : undefined;
+ 
+      // Change aleksey.semenov email display to @uzmto.com
+      if (user.mail === 'aleksey.semenov@ent-en.com') {
+        user.mail = HighlightUZMTOEmail('aleksey.semenov@uzmto.com');
+      } else {
+        user.mail = user.mail ? HighlightUZMTOEmail(user.mail) : undefined;
+      }
       // }
     });
 

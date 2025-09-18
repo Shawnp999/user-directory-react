@@ -88,7 +88,7 @@ const UserCard: React.FC<IUserCardProps> = ({ user, manager, additionalUserSetti
   const userManager: MicrosoftGraph.User = user.manager as MicrosoftGraph.User;
   const managerLetter = getManagerNameLetters(userManager ? userManager.displayName! : 'N A');
 
-  const username = user.mail?.replace('@uzmto.com', '');
+  const username = user.mail?.split('@')[0];
   const userPhotoUrl = 'https://eneraseg.sharepoint.com/sites/UZMTO2/foto_employees/' + username + '/big_pic.jpg';
 
   const isSpecialUser = user.id === '6248d93e-b3dd-4fdf-9d94-2c7a12f0a6dc';
